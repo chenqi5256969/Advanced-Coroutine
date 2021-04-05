@@ -175,13 +175,16 @@ class ControlledRunner<T> {
             }
 
             newTask.invokeOnCompletion {
+                LogUtils.i("newTask--after--$activeTask")
                 activeTask.compareAndSet(newTask, null)
             }
 
             val result: T
 
             while (true) {
+                LogUtils.i("newTask--$activeTask")
                 if (!activeTask.compareAndSet(null, newTask)) {
+                    LogUtils.i("newTask--middle")
                     val currentTask = activeTask.get()
                     if (currentTask != null) {
                         newTask.cancel()
