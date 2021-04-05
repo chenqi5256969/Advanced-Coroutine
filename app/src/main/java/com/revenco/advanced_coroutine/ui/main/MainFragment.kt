@@ -25,10 +25,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        count.set(10)
-        val compareAndSet = count.compareAndSet(10,100)
-        Log.i("onCreateView-->","${count.get()}")
-        Log.i("onCreateView-->","${compareAndSet}")
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
