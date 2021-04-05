@@ -18,12 +18,10 @@ class MainViewModel : ViewModel() {
 
     fun getBanner() {
         viewModelScope.launch { withContext(Dispatchers.IO) {
-                controlledRunner.cancelPreviousThenRun {
+                controlledRunner.joinPreviousOrRun {
                     delay(2000)
                     NetClient.getClient().createNetApi().getHomeBanner()
                 }
-        //    delay(2000)
-          //  NetClient.getClient().createNetApi().getHomeBanner()
             }
         }
     }
