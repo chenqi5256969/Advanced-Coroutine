@@ -2,12 +2,14 @@ package com.revenco.advanced_coroutine.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.revenco.advanced_coroutine.R
+import java.util.concurrent.atomic.AtomicInteger
 
 class MainFragment : Fragment() {
 
@@ -17,8 +19,16 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    private val count = AtomicInteger()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        count.set(10)
+        val compareAndSet = count.compareAndSet(10,100)
+        Log.i("onCreateView-->","${count.get()}")
+        Log.i("onCreateView-->","${compareAndSet}")
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
